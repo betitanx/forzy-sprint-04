@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="pt-BR">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Forzy · Assistente de manutenção</title><link rel="stylesheet" href="/estilo.css"><script src="/app.js" defer></script></head>
+<body>
+<a class="pular" href="#pergunta">Ir para a consulta</a>
+<div class="estrutura">
+  <aside class="barra">
+    <a class="marca" href="/" aria-label="Forzy, início"><span class="simbolo">F</span>forzy<span class="ponto">.</span></a>
+    <div class="secao-barra">MANUTENÇÃO PREDITIVA</div>
+    <div class="nav-ativa"><span aria-hidden="true">◈</span> Assistente</div>
+    <form id="filtros">
+      <h2>Recorte da consulta</h2>
+      <label for="motor">Motor</label><select id="motor" name="motor"><option value="">Todos os motores</option></select>
+      <label for="inicio">Início</label><input type="datetime-local" id="inicio" value="2026-01-01T00:00">
+      <label for="fim">Fim</label><input type="datetime-local" id="fim" value="2026-01-02T00:59">
+      <details class="leitura"><summary>Nova leitura</summary>
+        <label for="rotacao">Rotação (RPM)</label><input id="rotacao" type="number" min="0" step="any">
+        <label for="vibracao">Vibração (mm/s)</label><input id="vibracao" type="number" min="0" step="any">
+        <label for="temperatura">Temperatura (°C)</label><input id="temperatura" type="number" step="any">
+        <label for="corrente">Corrente (A)</label><input id="corrente" type="number" min="0" step="any">
+      </details>
+    </form>
+    <div class="rodape-barra"><span class="etiqueta">SPRINT 04</span><span>Base acadêmica sintética</span></div>
+  </aside>
+  <main>
+    <header class="cabecalho"><div><span class="sobretitulo">OPERAÇÃO / ASSISTENTE</span><h1>Assistente de manutenção</h1></div><button id="nova" class="secundario" type="button">Nova conversa</button></header>
+    <div class="area-trabalho">
+      <section class="conversa" aria-label="Conversa com o assistente">
+        <div id="boas-vindas"><div class="icone-grande" aria-hidden="true">◈</div><h2>O que vamos investigar?</h2><div class="sugestoes">
+          <button data-exemplo="anomalias" type="button"><span>01</span>Investigar anomalias do motor 3<b aria-hidden="true">↗</b></button>
+          <button data-exemplo="documentos" type="button"><span>02</span>Relacionar sensores e documentação<b aria-hidden="true">↗</b></button>
+          <button data-exemplo="manutencao" type="button"><span>03</span>Consultar histórico de manutenção<b aria-hidden="true">↗</b></button>
+        </div></div>
+        <div id="mensagens" role="log" aria-live="polite" aria-relevant="additions"></div>
+        <div class="compositor"><form id="consulta"><label class="sr-only" for="pergunta">Pergunta ao assistente</label><textarea id="pergunta" rows="2" maxlength="3000" placeholder="Digite sua pergunta sobre o equipamento…" required></textarea><button id="enviar" type="submit" aria-label="Enviar pergunta">Enviar <span aria-hidden="true">↗</span></button></form><div class="linha-estado"><span id="conexao" role="status">Verificando conexão…</span><span>20 motores · 30.000 leituras</span></div></div>
+      </section>
+      <aside class="evidencias" aria-label="Evidências da consulta"><div class="titulo-evidencias"><h2>Evidências</h2><span id="quantidade-fontes">0 fontes</span></div><div id="resumo"><p class="vazio">Nenhuma consulta realizada.</p></div><div id="fontes"></div><button id="exportar" class="secundario" type="button" hidden>Exportar conversa</button></aside>
+    </div>
+  </main>
+</div>
+</body></html>

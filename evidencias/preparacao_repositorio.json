@@ -1,0 +1,8 @@
+{
+  "preparacao_sem_modelos_salvos": true,
+  "banco_preservado": true,
+  "classificador_reproduzido": true,
+  "detectores_reproduzidos": true,
+  "segunda_preparacao_nao_treina_novamente": true,
+  "chave_exigida_para_preparacao": false
+}

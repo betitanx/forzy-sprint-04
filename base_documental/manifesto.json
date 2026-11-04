@@ -1,0 +1,7 @@
+{
+  "documentacao_banco.pdf": {"titulo": "Documentação original do banco sintético", "origem": "PDF fornecido com as Sprints 02 e 03"},
+  "banco.md": {"titulo": "Estrutura e simulação do banco", "origem": "BANCO.md da Sprint 02"},
+  "dados_forzy.md": {"titulo": "Variáveis e escopo dos dados", "origem": "DADOS_FORZY.md da Sprint 03"},
+  "comparacao_sprints.md": {"titulo": "Classificação e detecção de anomalias", "origem": "COMPARACAO_SPRINTS.md da Sprint 03"},
+  "interpretacao_modelos.md": {"titulo": "Guia de interpretação dos modelos", "origem": "Consolidação da equipe na Sprint 04, baseada no código das Sprints 02 e 03"}
+}

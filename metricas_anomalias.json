@@ -1,0 +1,238 @@
+{
+  "origem": "motor.db, base histórica disponibilizada para a Sprint 3",
+  "linhas": 30000,
+  "motores": 20,
+  "frequencia": "uma leitura por minuto",
+  "periodo": {
+    "inicio": "2026-01-01 00:00:00",
+    "fim": "2026-01-02 00:59:00"
+  },
+  "variaveis_sensores": [
+    "rotacao_rpm",
+    "vibracao_mm_s",
+    "temperatura_c",
+    "corrente_a"
+  ],
+  "estrategia": "semissupervisionada: treino somente com leituras falha=0; rótulos usados na avaliação",
+  "particoes": {
+    "treino": 16800,
+    "teste": 9000,
+    "validacao": 4200
+  },
+  "modelo": {
+    "n_estimators": 400,
+    "contamination": "auto",
+    "random_state": 42
+  },
+  "calibracao_validacao": {
+    "baseline_estatistico": {
+      "precision": 0.8801313628899836,
+      "recall": 0.9084745762711864,
+      "f1": 0.8940783986655546
+    },
+    "isolation_forest": {
+      "precision": 0.7924791086350975,
+      "recall": 0.964406779661017,
+      "f1": 0.8700305810397554
+    },
+    "limiar_estatistico": 2.466647889849215,
+    "limiar_isolation_forest": 0.08541144109619381
+  },
+  "metricas_teste": {
+    "baseline_estatistico": {
+      "acuracia": 0.9828888888888889,
+      "precision_anomalia": 0.9159109645507008,
+      "recall_anomalia": 0.9552880481513327,
+      "f1_anomalia": 0.9351851851851852,
+      "f1_macro": 0.9626642771804063,
+      "roc_auc": 0.9975813081474861,
+      "pr_auc": 0.9853244898145677,
+      "matriz_confusao": [
+        [
+          7735,
+          102
+        ],
+        [
+          52,
+          1111
+        ]
+      ],
+      "limiar": 2.466647889849215,
+      "quantidade_anomalias": 1213,
+      "taxa_anomalias": 0.13477777777777777
+    },
+    "isolation_forest": {
+      "acuracia": 0.9687777777777777,
+      "precision_anomalia": 0.8181818181818182,
+      "recall_anomalia": 0.9750644883920895,
+      "f1_anomalia": 0.8897606904668497,
+      "f1_macro": 0.935787082661423,
+      "roc_auc": 0.9917859930038418,
+      "pr_auc": 0.9370364034262781,
+      "matriz_confusao": [
+        [
+          7585,
+          252
+        ],
+        [
+          29,
+          1134
+        ]
+      ],
+      "limiar": 0.08541144109619381,
+      "quantidade_anomalias": 1386,
+      "taxa_anomalias": 0.154
+    }
+  },
+  "modelo_operacional": "baseline_estatistico_por_motor",
+  "janela_temporal": {
+    "tamanho": 5,
+    "medidas": [
+      "score_medio_movel_5",
+      "score_maximo_movel_5",
+      "alertas_ultimas_5",
+      "anomalia_persistente_5"
+    ]
+  },
+  "sensores_mais_frequentes_nos_alertas": {
+    "vibração": 814,
+    "rotação": 633,
+    "temperatura": 496,
+    "corrente": 483
+  },
+  "top_motores_por_anomalias": [
+    {
+      "motor_id": 19,
+      "leituras": 1500,
+      "anomalias_estatisticas": 270,
+      "anomalias_isolation_forest": 306,
+      "periodos_persistentes_5": 285,
+      "score_medio": 1.6116978381252751,
+      "score_maximo": 8.929274174400135,
+      "falhas_rotuladas": 252,
+      "taxa_anomalias": 0.18
+    },
+    {
+      "motor_id": 13,
+      "leituras": 1500,
+      "anomalias_estatisticas": 263,
+      "anomalias_isolation_forest": 327,
+      "periodos_persistentes_5": 295,
+      "score_medio": 1.5022989840313445,
+      "score_maximo": 7.579343242037849,
+      "falhas_rotuladas": 307,
+      "taxa_anomalias": 0.17533333333333334
+    },
+    {
+      "motor_id": 12,
+      "leituras": 1500,
+      "anomalias_estatisticas": 234,
+      "anomalias_isolation_forest": 262,
+      "periodos_persistentes_5": 252,
+      "score_medio": 1.4739009282093345,
+      "score_maximo": 8.467405182460752,
+      "falhas_rotuladas": 226,
+      "taxa_anomalias": 0.156
+    },
+    {
+      "motor_id": 20,
+      "leituras": 1500,
+      "anomalias_estatisticas": 234,
+      "anomalias_isolation_forest": 292,
+      "periodos_persistentes_5": 256,
+      "score_medio": 1.450868153189033,
+      "score_maximo": 10.034672473580493,
+      "falhas_rotuladas": 273,
+      "taxa_anomalias": 0.156
+    },
+    {
+      "motor_id": 1,
+      "leituras": 1500,
+      "anomalias_estatisticas": 224,
+      "anomalias_isolation_forest": 266,
+      "periodos_persistentes_5": 239,
+      "score_medio": 1.527611245945856,
+      "score_maximo": 10.02046309982272,
+      "falhas_rotuladas": 226,
+      "taxa_anomalias": 0.14933333333333335
+    },
+    {
+      "motor_id": 8,
+      "leituras": 1500,
+      "anomalias_estatisticas": 214,
+      "anomalias_isolation_forest": 250,
+      "periodos_persistentes_5": 231,
+      "score_medio": 1.5458062716708665,
+      "score_maximo": 9.394248842855474,
+      "falhas_rotuladas": 193,
+      "taxa_anomalias": 0.14266666666666666
+    },
+    {
+      "motor_id": 2,
+      "leituras": 1500,
+      "anomalias_estatisticas": 198,
+      "anomalias_isolation_forest": 222,
+      "periodos_persistentes_5": 215,
+      "score_medio": 1.4509778037552685,
+      "score_maximo": 10.352268341144313,
+      "falhas_rotuladas": 195,
+      "taxa_anomalias": 0.132
+    },
+    {
+      "motor_id": 6,
+      "leituras": 1500,
+      "anomalias_estatisticas": 193,
+      "anomalias_isolation_forest": 232,
+      "periodos_persistentes_5": 208,
+      "score_medio": 1.3580195486895419,
+      "score_maximo": 7.633012460392182,
+      "falhas_rotuladas": 214,
+      "taxa_anomalias": 0.12866666666666668
+    },
+    {
+      "motor_id": 3,
+      "leituras": 1500,
+      "anomalias_estatisticas": 183,
+      "anomalias_isolation_forest": 216,
+      "periodos_persistentes_5": 192,
+      "score_medio": 1.3192524490151183,
+      "score_maximo": 7.913518144519554,
+      "falhas_rotuladas": 184,
+      "taxa_anomalias": 0.122
+    },
+    {
+      "motor_id": 7,
+      "leituras": 1500,
+      "anomalias_estatisticas": 180,
+      "anomalias_isolation_forest": 222,
+      "periodos_persistentes_5": 192,
+      "score_medio": 1.3422794645875242,
+      "score_maximo": 6.8516459260687235,
+      "falhas_rotuladas": 200,
+      "taxa_anomalias": 0.12
+    }
+  ],
+  "tipos_falha": [
+    {
+      "codigo": 0,
+      "nome": "Normal",
+      "descricao": "Operacao dentro dos parametros esperados."
+    },
+    {
+      "codigo": 1,
+      "nome": "Desbalanceamento",
+      "descricao": "Vibracao alta e rotacao instavel."
+    },
+    {
+      "codigo": 2,
+      "nome": "Superaquecimento",
+      "descricao": "Temperatura e corrente elevadas."
+    },
+    {
+      "codigo": 3,
+      "nome": "Falha mecanica",
+      "descricao": "Queda de rotacao com vibracao e corrente altas."
+    }
+  ],
+  "cadastro_motores_linhas": 20
+}

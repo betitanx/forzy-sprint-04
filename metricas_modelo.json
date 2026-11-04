@@ -1,0 +1,94 @@
+{
+  "features": [
+    "rotacao_rpm",
+    "vibracao_mm_s",
+    "temperatura_c",
+    "corrente_a"
+  ],
+  "classes": {
+    "0": "Normal",
+    "1": "Desbalanceamento",
+    "2": "Superaquecimento",
+    "3": "Falha mecânica"
+  },
+  "train_rows": 21000,
+  "test_rows": 9000,
+  "train_distribution": {
+    "0": 18454,
+    "1": 779,
+    "2": 1273,
+    "3": 494
+  },
+  "test_distribution": {
+    "0": 7837,
+    "1": 426,
+    "2": 445,
+    "3": 292
+  },
+  "accuracy": 0.9637777777777777,
+  "classification_report": {
+    "Normal": {
+      "precision": 0.985205197478451,
+      "recall": 0.9771596274084471,
+      "f1-score": 0.9811659192825112,
+      "support": 7837.0
+    },
+    "Desbalanceamento": {
+      "precision": 0.8827751196172249,
+      "recall": 0.8661971830985915,
+      "f1-score": 0.8744075829383886,
+      "support": 426.0
+    },
+    "Superaquecimento": {
+      "precision": 0.758893280632411,
+      "recall": 0.8629213483146068,
+      "f1-score": 0.807570977917981,
+      "support": 445.0
+    },
+    "Falha mecânica": {
+      "precision": 0.8679867986798679,
+      "recall": 0.9006849315068494,
+      "f1-score": 0.8840336134453781,
+      "support": 292.0
+    },
+    "accuracy": 0.9637777777777777,
+    "macro avg": {
+      "precision": 0.8737150991019886,
+      "recall": 0.9017407725821237,
+      "f1-score": 0.8867945233960647,
+      "support": 9000.0
+    },
+    "weighted avg": {
+      "precision": 0.9653638876323892,
+      "recall": 0.9637777777777777,
+      "f1-score": 0.964377982227594,
+      "support": 9000.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      7658,
+      45,
+      121,
+      13
+    ],
+    [
+      39,
+      369,
+      0,
+      18
+    ],
+    [
+      52,
+      0,
+      384,
+      9
+    ],
+    [
+      24,
+      4,
+      1,
+      263
+    ]
+  ]
+}

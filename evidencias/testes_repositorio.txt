@@ -1,0 +1,17 @@
+test_ambiguidade_nao_chama_api (test_integracao.Verificacoes.test_ambiguidade_nao_chama_api) ... ok
+test_consulta_sem_vocabulario_nao_inventa_trecho (test_integracao.Verificacoes.test_consulta_sem_vocabulario_nao_inventa_trecho) ... ok
+test_dia_final_inclui_todas_as_leituras (test_integracao.Verificacoes.test_dia_final_inclui_todas_as_leituras) ... ok
+test_leitura_nao_finita_e_rejeitada (test_integracao.Verificacoes.test_leitura_nao_finita_e_rejeitada) ... ok
+test_motor_divergente_pede_esclarecimento (test_integracao.Verificacoes.test_motor_divergente_pede_esclarecimento) ... ok
+test_motor_inexistente_nao_usa_outro_motor (test_integracao.Verificacoes.test_motor_inexistente_nao_usa_outro_motor) ... ok
+test_periodo_invertido_nao_e_consultado (test_integracao.Verificacoes.test_periodo_invertido_nao_e_consultado) ... ok
+test_recuperacao_restringe_motor_e_vigencia (test_integracao.Verificacoes.test_recuperacao_restringe_motor_e_vigencia) ... ok
+test_referencia_inexistente_agrupada_e_rejeitada (test_integracao.Verificacoes.test_referencia_inexistente_agrupada_e_rejeitada) ... ok
+test_referencia_inexistente_e_rejeitada (test_integracao.Verificacoes.test_referencia_inexistente_e_rejeitada) ... ok
+test_sem_dados_nao_usa_outro_periodo (test_integracao.Verificacoes.test_sem_dados_nao_usa_outro_periodo) ... ok
+test_total_nao_duplica_alertas_dos_detectores (test_integracao.Verificacoes.test_total_nao_duplica_alertas_dos_detectores) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.991s
+
+OK

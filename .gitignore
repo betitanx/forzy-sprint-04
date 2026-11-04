@@ -1,0 +1,11 @@
+.env
+.env.*
+!.env.example
+__pycache__/
+*.pyc
+.venv/
+dados/indice/
+evidencias/sessoes/
+*.joblib
+dados_resultado/
+.pytest_cache/

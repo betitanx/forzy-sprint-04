@@ -1,0 +1,32 @@
+{
+  "paginas": 13,
+  "tamanhos_texto": [
+    12.0
+  ],
+  "fontes": [
+    "/AAAAAA+Arial-BoldMT",
+    "/AAAAAA+ArialMT"
+  ],
+  "arial_12": true,
+  "caracteres_por_pagina": [
+    543,
+    1399,
+    1958,
+    1222,
+    1816,
+    2222,
+    1377,
+    2003,
+    2324,
+    1624,
+    1917,
+    1430,
+    1376
+  ],
+  "revisao_visual_aprovada": true,
+  "texto_preto": true,
+  "detalhes_azuis": true,
+  "equipe_conferida": true,
+  "tabelas_sem_cortes": true,
+  "credenciais_no_pdf": false
+}

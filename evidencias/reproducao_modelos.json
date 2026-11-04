@@ -1,0 +1,17 @@
+{
+  "sprint02": {
+    "matriz_confusao_confere": true,
+    "acuracia": 0.9637777777777777,
+    "f1_macro": 0.8867945233960647
+  },
+  "sprint03": {
+    "baseline_estatistico": {
+      "matriz_confusao_confere": true,
+      "f1_anomalia": 0.9351851851851852
+    },
+    "isolation_forest": {
+      "matriz_confusao_confere": true,
+      "f1_anomalia": 0.8897606904668497
+    }
+  }
+}

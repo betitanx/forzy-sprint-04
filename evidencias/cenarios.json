@@ -1,0 +1,1748 @@
+[
+  {
+    "id": "01_anomalia",
+    "pergunta": "O motor 3 apresentou anomalias no período selecionado? Informe a quantidade de leituras, o total de anomalias do baseline, o maior score e diferencie isso da classe prevista na última leitura.",
+    "esperado": "Citar os totais corretos do recorte e separar rótulo, previsão e score.",
+    "executado_em_utc": "2026-11-04T22:12:06.532553+00:00",
+    "filtros": {
+      "motor_id": 3,
+      "inicio": "2026-01-01T17:30:00",
+      "fim": "2026-01-02T00:59:00"
+    },
+    "verificacao_automatica": true,
+    "resultado": {
+      "resposta": "Sim, o motor 3 apresentou anomalias no período de 2026-01-01 17:30:00 a 2026-01-02 00:59:00, com um total de 450 leituras. Foram detectadas 2 anomalias pelo método baseline e 4 anomalias pelo método Isolation Forest, sendo 4 anomalias únicas no total. O maior score de anomalia registrado foi 6,1552, que indica um desvio relevante em pelo menos uma leitura. Entretanto, a última leitura do período não foi classificada como anômala: a classe prevista foi \"Normal\" com alta probabilidade (0,9876), score de anomalia baixo (0,8838) e severidade considerada baixa. Isso mostra que, apesar das anomalias detectadas ao longo do período, a condição mais recente do motor está dentro do padrão esperado.",
+      "fontes": [
+        {
+          "id": "O1",
+          "tipo": "operacional",
+          "titulo": "Histórico e resultados dos modelos",
+          "arquivo": "motor.db / anomalias_leituras.csv",
+          "pagina": null,
+          "trecho": "{\"disponivel\": true, \"origem\": \"motor.db e dados_resultado/anomalias_leituras.csv\", \"dados_sinteticos\": true, \"motor\": {\"motor_id\": 3, \"fabricante\": \"Toshiba\", \"modelo\": \"EQP-Global\", \"potencia_kw\": 11.0, \"ano_instalacao\": 2025}, \"motor_id\": 3, \"inicio\": \"2026-01-01 17:30:00\", \"fim\": \"2026-01-02 00:59:00\", \"quantidade_leituras\": 450, \"motores\": 1, \"rotulos_historicos\": {\"0\": 448, \"1\": 2}, \"sensores\": {\"rotacao_rpm\": {\"minimo\": 1665.1, \"media\": 1764.3122, \"maximo\": 1839.81}, \"vibracao_mm_s\": {\"minimo\": 2.296, \"media\": 3.362691111111111, \"maximo\": 10.253}, \"temperatura_c\": {\"minimo\": 53.89, \"media\": 62.15295555555555, \"maximo\": 69.24}, \"corrente_a\": {\"minimo\": 9.57, \"media\": 11.321311111111111, \"maximo\": 13.1}}, \"anomalias_baseline\": 2, \"anomalias_isolation_forest\": 4, \"anomalias_unicas\": 4, \"anomalias_ambos_detectores\": 2, \"score_maximo\": 6.155208215443032, \"historico_manutencao_disponivel\": false, \"ultima_leitura\": {\"instante\": \"2026-01-02 00:59:00\", \"classe_prevista\": \"Normal\", \"codigo_classe\": 0, \"probabilidade\": 0.987579, \"probabilidades\": {\"Normal\": 0.987579, \"Desbalanceamento\": 0.004456, \"Superaquecimento\": 0.004593, \"Falha mecânica\": 0.003372}, \"score_anomalia\": 0.883763, \"limiar\": 2.466647889849215, \"anomalia\": false, \"score_isolation_forest\": -0.06801887662407158, \"severidade\": \"baixo\", \"referencia\": \"por motor\", \"leituras\": {\"rotacao_rpm\": 1728.94, \"vibracao_mm_s\": 3.121, \"temperatura_c\": 65.59, \"corrente_a\": 11.51}}}"
+        },
+        {
+          "id": "F4",
+          "tipo": "documento",
+          "titulo": "Guia de interpretação dos modelos",
+          "arquivo": "interpretacao_modelos.md",
+          "pagina": null,
+          "trecho": "# Guia de interpretação dos modelos Origem: código e documentação das Sprints 02 e 03, consolidados pela equipe na Sprint 04. Este guia explica a implementação acadêmica; não é um manual de fabricante. ## Classificação de falhas O classificador ExtraTrees recebe rotação em RPM, vibração em mm/s, temperatura em °C e corrente em ampères. As classes são normal, desbalanceamento, superaquecimento e falha mecânica. A probabilidade expressa a saída do modelo, não a certeza de um diagnóstico físico. A base é sintética. ## Score e baseline operacional O baseline da Sprint 03 compara os quatro sensores com médias e desvios-padrão do período normal de treino do próprio motor. O score é a raiz da média dos quadrados dos desvios padronizados. O limiar estatístico calibrado é aproximadamente 2,4666. A classificação anômala ocorre quando o score alcança esse limiar. Há também um Isolation Forest multivariado complementar. O limiar do Isolation Forest é aproximadamente 0,0854. ## Interpretação de severidade O código da Sprint 03 usa a razão entre score e limiar: abaixo de 0,75 é baixo; a partir de 0,75 é atenção; a partir",
+          "fragmento_id": "94a4873ee712",
+          "sha256": "36485f995ccd7a6323ba7c96277660c23cede94514e2d540dbc51901b272773f",
+          "similaridade": 0.08059,
+          "origem": "Consolidação da equipe na Sprint 04, baseada no código das Sprints 02 e 03"
+        }
+      ],
+      "informacao_insuficiente": false,
+      "contexto_operacional": {
+        "disponivel": true,
+        "origem": "motor.db e dados_resultado/anomalias_leituras.csv",
+        "dados_sinteticos": true,
+        "motor": {
+          "motor_id": 3,
+          "fabricante": "Toshiba",
+          "modelo": "EQP-Global",
+          "potencia_kw": 11.0,
+          "ano_instalacao": 2025
+        },
+        "motor_id": 3,
+        "inicio": "2026-01-01 17:30:00",
+        "fim": "2026-01-02 00:59:00",
+        "quantidade_leituras": 450,
+        "motores": 1,
+        "rotulos_historicos": {
+          "0": 448,
+          "1": 2
+        },
+        "sensores": {
+          "rotacao_rpm": {
+            "minimo": 1665.1,
+            "media": 1764.3122,
+            "maximo": 1839.81
+          },
+          "vibracao_mm_s": {
+            "minimo": 2.296,
+            "media": 3.362691111111111,
+            "maximo": 10.253
+          },
+          "temperatura_c": {
+            "minimo": 53.89,
+            "media": 62.15295555555555,
+            "maximo": 69.24
+          },
+          "corrente_a": {
+            "minimo": 9.57,
+            "media": 11.321311111111111,
+            "maximo": 13.1
+          }
+        },
+        "anomalias_baseline": 2,
+        "anomalias_isolation_forest": 4,
+        "anomalias_unicas": 4,
+        "anomalias_ambos_detectores": 2,
+        "score_maximo": 6.155208215443032,
+        "historico_manutencao_disponivel": false,
+        "ultima_leitura": {
+          "instante": "2026-01-02 00:59:00",
+          "classe_prevista": "Normal",
+          "codigo_classe": 0,
+          "probabilidade": 0.987579,
+          "probabilidades": {
+            "Normal": 0.987579,
+            "Desbalanceamento": 0.004456,
+            "Superaquecimento": 0.004593,
+            "Falha mecânica": 0.003372
+          },
+          "score_anomalia": 0.883763,
+          "limiar": 2.466647889849215,
+          "anomalia": false,
+          "score_isolation_forest": -0.06801887662407158,
+          "severidade": "baixo",
+          "referencia": "por motor",
+          "leituras": {
+            "rotacao_rpm": 1728.94,
+            "vibracao_mm_s": 3.121,
+            "temperatura_c": 65.59,
+            "corrente_a": 11.51
+          }
+        }
+      },
+      "serie": [
+        {
+          "instante": "2026-01-01 17:30:00",
+          "score": 5.389,
+          "anomalia": 1
+        },
+        {
+          "instante": "2026-01-01 17:35:00",
+          "score": 0.422,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 17:40:00",
+          "score": 1.417,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 17:45:00",
+          "score": 0.596,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 17:50:00",
+          "score": 0.83,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 17:55:00",
+          "score": 0.805,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 18:00:00",
+          "score": 0.996,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 18:05:00",
+          "score": 0.716,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 18:10:00",
+          "score": 1.035,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 18:15:00",
+          "score": 0.967,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 18:20:00",
+          "score": 0.59,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 18:25:00",
+          "score": 0.795,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 18:30:00",
+          "score": 0.705,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 18:35:00",
+          "score": 0.33,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 18:40:00",
+          "score": 1.321,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 18:45:00",
+          "score": 0.745,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 18:50:00",
+          "score": 0.801,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 18:55:00",
+          "score": 0.862,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 19:00:00",
+          "score": 1.102,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 19:05:00",
+          "score": 0.394,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 19:10:00",
+          "score": 1.01,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 19:15:00",
+          "score": 1.161,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 19:20:00",
+          "score": 0.784,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 19:25:00",
+          "score": 0.848,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 19:30:00",
+          "score": 1.24,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 19:35:00",
+          "score": 1.316,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 19:40:00",
+          "score": 0.898,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 19:45:00",
+          "score": 0.471,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 19:50:00",
+          "score": 1.316,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 19:55:00",
+          "score": 0.955,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 20:00:00",
+          "score": 1.339,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 20:05:00",
+          "score": 0.429,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 20:10:00",
+          "score": 0.331,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 20:15:00",
+          "score": 0.639,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 20:20:00",
+          "score": 1.285,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 20:25:00",
+          "score": 0.626,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 20:30:00",
+          "score": 0.516,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 20:35:00",
+          "score": 1.139,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 20:40:00",
+          "score": 0.891,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 20:45:00",
+          "score": 0.916,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 20:50:00",
+          "score": 0.896,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 20:55:00",
+          "score": 1.321,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 21:00:00",
+          "score": 0.802,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 21:05:00",
+          "score": 0.682,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 21:10:00",
+          "score": 0.927,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 21:15:00",
+          "score": 0.887,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 21:20:00",
+          "score": 1.478,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 21:25:00",
+          "score": 0.459,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 21:30:00",
+          "score": 0.623,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 21:35:00",
+          "score": 0.748,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 21:40:00",
+          "score": 0.249,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 21:45:00",
+          "score": 0.797,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 21:50:00",
+          "score": 1.171,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 21:55:00",
+          "score": 1.66,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 22:00:00",
+          "score": 1.271,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 22:05:00",
+          "score": 0.473,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 22:10:00",
+          "score": 0.997,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 22:15:00",
+          "score": 0.533,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 22:20:00",
+          "score": 1.169,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 22:25:00",
+          "score": 1.127,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 22:30:00",
+          "score": 0.864,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 22:35:00",
+          "score": 1.015,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 22:40:00",
+          "score": 0.86,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 22:45:00",
+          "score": 0.722,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 22:50:00",
+          "score": 0.759,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 22:55:00",
+          "score": 0.692,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 23:00:00",
+          "score": 1.277,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 23:05:00",
+          "score": 1.066,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 23:10:00",
+          "score": 0.507,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 23:15:00",
+          "score": 0.661,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 23:20:00",
+          "score": 1.248,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 23:25:00",
+          "score": 0.878,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 23:30:00",
+          "score": 0.806,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 23:35:00",
+          "score": 0.776,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 23:40:00",
+          "score": 0.261,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 23:45:00",
+          "score": 0.402,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 23:50:00",
+          "score": 0.878,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 23:55:00",
+          "score": 0.952,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-02 00:00:00",
+          "score": 1.745,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-02 00:05:00",
+          "score": 0.684,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-02 00:10:00",
+          "score": 0.411,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-02 00:15:00",
+          "score": 0.677,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-02 00:20:00",
+          "score": 0.747,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-02 00:25:00",
+          "score": 1.451,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-02 00:30:00",
+          "score": 1.336,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-02 00:35:00",
+          "score": 0.985,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-02 00:40:00",
+          "score": 1.614,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-02 00:45:00",
+          "score": 1.186,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-02 00:50:00",
+          "score": 0.976,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-02 00:55:00",
+          "score": 0.333,
+          "anomalia": 0
+        }
+      ],
+      "modelo": "gpt-4.1-mini-2025-04-14",
+      "duracao_segundos": 3.161,
+      "uso": {
+        "input_tokens": 3860,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 211,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 4071
+      },
+      "tipo_geracao": "OpenAI Responses API"
+    }
+  },
+  {
+    "id": "02_operacao_documentacao",
+    "pergunta": "Relacione os dados operacionais do motor 3 com a documentação sobre superaquecimento e explique como investigar os desvios. Use fontes dos dados e dos documentos, sem inventar um manual de fabricante.",
+    "esperado": "Combinar evidência operacional e documento recuperado, com fontes dos dois tipos e limites da análise.",
+    "executado_em_utc": "2026-11-04T22:12:09.438585+00:00",
+    "filtros": {
+      "motor_id": 3,
+      "inicio": "2026-01-01T17:30:00",
+      "fim": "2026-01-02T00:59:00"
+    },
+    "verificacao_automatica": true,
+    "resultado": {
+      "resposta": "O motor 3, fabricado pela Toshiba, modelo EQP-Global, com potência nominal de 11 kW, apresenta dados operacionais no período de 2026-01-01 17:30:00 a 2026-01-02 00:59:00, com 450 leituras. As leituras de sensores indicam temperatura média de 62,15 °C e máxima de 69,24 °C, e a última leitura apresenta temperatura de 65,59 °C com classificação prevista como \"Normal\" e baixa severidade de anomalia (score 0,88 vs limiar 2,47) [O1]. Sobre superaquecimento, o classificador ExtraTrees considera temperatura, rotação (RPM), vibração e corrente, atribuindo probabilidades a classes como superaquecimento e desbalanceamento, mas a probabilidade de superaquecimento na última leitura é baixa (0,0046) e o score de anomalia não ultrapassa o limiar [F1]. Para investigar desvios que possam indicar superaquecimento, recomenda-se analisar o motor, período e unidades, verificando a qualidade dos registros; comparar sensores com a referência normal do equipamento; avaliar se o desvio persiste em várias leituras; e confrontar as hipóteses do classificador com a documentação disponível, seguindo o roteiro analítico acadêmico descrito, sem executar intervenções físicas sem profissional [F2]. Assim, não há indicativo atual de superaquecimento, e a investigação deve focar no monitoramento contínuo dos desvios e comparação com a referência normal desse motor.",
+      "fontes": [
+        {
+          "id": "O1",
+          "tipo": "operacional",
+          "titulo": "Histórico e resultados dos modelos",
+          "arquivo": "motor.db / anomalias_leituras.csv",
+          "pagina": null,
+          "trecho": "{\"disponivel\": true, \"origem\": \"motor.db e dados_resultado/anomalias_leituras.csv\", \"dados_sinteticos\": true, \"motor\": {\"motor_id\": 3, \"fabricante\": \"Toshiba\", \"modelo\": \"EQP-Global\", \"potencia_kw\": 11.0, \"ano_instalacao\": 2025}, \"motor_id\": 3, \"inicio\": \"2026-01-01 17:30:00\", \"fim\": \"2026-01-02 00:59:00\", \"quantidade_leituras\": 450, \"motores\": 1, \"rotulos_historicos\": {\"0\": 448, \"1\": 2}, \"sensores\": {\"rotacao_rpm\": {\"minimo\": 1665.1, \"media\": 1764.3122, \"maximo\": 1839.81}, \"vibracao_mm_s\": {\"minimo\": 2.296, \"media\": 3.362691111111111, \"maximo\": 10.253}, \"temperatura_c\": {\"minimo\": 53.89, \"media\": 62.15295555555555, \"maximo\": 69.24}, \"corrente_a\": {\"minimo\": 9.57, \"media\": 11.321311111111111, \"maximo\": 13.1}}, \"anomalias_baseline\": 2, \"anomalias_isolation_forest\": 4, \"anomalias_unicas\": 4, \"anomalias_ambos_detectores\": 2, \"score_maximo\": 6.155208215443032, \"historico_manutencao_disponivel\": false, \"ultima_leitura\": {\"instante\": \"2026-01-02 00:59:00\", \"classe_prevista\": \"Normal\", \"codigo_classe\": 0, \"probabilidade\": 0.987579, \"probabilidades\": {\"Normal\": 0.987579, \"Desbalanceamento\": 0.004456, \"Superaquecimento\": 0.004593, \"Falha mecânica\": 0.003372}, \"score_anomalia\": 0.883763, \"limiar\": 2.466647889849215, \"anomalia\": false, \"score_isolation_forest\": -0.06801887662407158, \"severidade\": \"baixo\", \"referencia\": \"por motor\", \"leituras\": {\"rotacao_rpm\": 1728.94, \"vibracao_mm_s\": 3.121, \"temperatura_c\": 65.59, \"corrente_a\": 11.51}}}"
+        },
+        {
+          "id": "F1",
+          "tipo": "documento",
+          "titulo": "Guia de interpretação dos modelos",
+          "arquivo": "interpretacao_modelos.md",
+          "pagina": null,
+          "trecho": "# Guia de interpretação dos modelos Origem: código e documentação das Sprints 02 e 03, consolidados pela equipe na Sprint 04. Este guia explica a implementação acadêmica; não é um manual de fabricante. ## Classificação de falhas O classificador ExtraTrees recebe rotação em RPM, vibração em mm/s, temperatura em °C e corrente em ampères. As classes são normal, desbalanceamento, superaquecimento e falha mecânica. A probabilidade expressa a saída do modelo, não a certeza de um diagnóstico físico. A base é sintética. ## Score e baseline operacional O baseline da Sprint 03 compara os quatro sensores com médias e desvios-padrão do período normal de treino do próprio motor. O score é a raiz da média dos quadrados dos desvios padronizados. O limiar estatístico calibrado é aproximadamente 2,4666. A classificação anômala ocorre quando o score alcança esse limiar. Há também um Isolation Forest multivariado complementar. O limiar do Isolation Forest é aproximadamente 0,0854. ## Interpretação de severidade O código da Sprint 03 usa a razão entre score e limiar: abaixo de 0,75 é baixo; a partir de 0,75 é atenção; a partir",
+          "fragmento_id": "94a4873ee712",
+          "sha256": "36485f995ccd7a6323ba7c96277660c23cede94514e2d540dbc51901b272773f",
+          "similaridade": 0.11669,
+          "origem": "Consolidação da equipe na Sprint 04, baseada no código das Sprints 02 e 03"
+        },
+        {
+          "id": "F2",
+          "tipo": "documento",
+          "titulo": "Guia de interpretação dos modelos",
+          "arquivo": "interpretacao_modelos.md",
+          "pagina": null,
+          "trecho": "0,0854. ## Interpretação de severidade O código da Sprint 03 usa a razão entre score e limiar: abaixo de 0,75 é baixo; a partir de 0,75 é atenção; a partir de 1,0 é alto; a partir de 1,5 é crítico. Essa regra é uma heurística do projeto, sem validação como escala de risco industrial. Um score alto significa desvio estatístico, não comprova a causa de uma falha. ## Investigação dos desvios Para investigar, conferir o motor, o período, as unidades e a qualidade do registro; comparar os sensores com a referência normal do equipamento; verificar se o desvio persiste em várias leituras; comparar a hipótese do classificador com a documentação disponível. Esse roteiro é uma orientação analítica da equipe. Intervenções físicas dependem do procedimento do fabricante e da avaliação de um profissional responsável. Não executar manobras elétricas, desmontagens ou alterações de proteção com base apenas no assistente. ## Falta de informações O banco não contém ordens de serviço, nomes de técnicos, datas de troca de peças ou intervenções de manutenção. Não inferir que uma falha rotulada corresponde a uma manutenção",
+          "fragmento_id": "aee045680047",
+          "sha256": "36485f995ccd7a6323ba7c96277660c23cede94514e2d540dbc51901b272773f",
+          "similaridade": 0.10432,
+          "origem": "Consolidação da equipe na Sprint 04, baseada no código das Sprints 02 e 03"
+        }
+      ],
+      "informacao_insuficiente": false,
+      "contexto_operacional": {
+        "disponivel": true,
+        "origem": "motor.db e dados_resultado/anomalias_leituras.csv",
+        "dados_sinteticos": true,
+        "motor": {
+          "motor_id": 3,
+          "fabricante": "Toshiba",
+          "modelo": "EQP-Global",
+          "potencia_kw": 11.0,
+          "ano_instalacao": 2025
+        },
+        "motor_id": 3,
+        "inicio": "2026-01-01 17:30:00",
+        "fim": "2026-01-02 00:59:00",
+        "quantidade_leituras": 450,
+        "motores": 1,
+        "rotulos_historicos": {
+          "0": 448,
+          "1": 2
+        },
+        "sensores": {
+          "rotacao_rpm": {
+            "minimo": 1665.1,
+            "media": 1764.3122,
+            "maximo": 1839.81
+          },
+          "vibracao_mm_s": {
+            "minimo": 2.296,
+            "media": 3.362691111111111,
+            "maximo": 10.253
+          },
+          "temperatura_c": {
+            "minimo": 53.89,
+            "media": 62.15295555555555,
+            "maximo": 69.24
+          },
+          "corrente_a": {
+            "minimo": 9.57,
+            "media": 11.321311111111111,
+            "maximo": 13.1
+          }
+        },
+        "anomalias_baseline": 2,
+        "anomalias_isolation_forest": 4,
+        "anomalias_unicas": 4,
+        "anomalias_ambos_detectores": 2,
+        "score_maximo": 6.155208215443032,
+        "historico_manutencao_disponivel": false,
+        "ultima_leitura": {
+          "instante": "2026-01-02 00:59:00",
+          "classe_prevista": "Normal",
+          "codigo_classe": 0,
+          "probabilidade": 0.987579,
+          "probabilidades": {
+            "Normal": 0.987579,
+            "Desbalanceamento": 0.004456,
+            "Superaquecimento": 0.004593,
+            "Falha mecânica": 0.003372
+          },
+          "score_anomalia": 0.883763,
+          "limiar": 2.466647889849215,
+          "anomalia": false,
+          "score_isolation_forest": -0.06801887662407158,
+          "severidade": "baixo",
+          "referencia": "por motor",
+          "leituras": {
+            "rotacao_rpm": 1728.94,
+            "vibracao_mm_s": 3.121,
+            "temperatura_c": 65.59,
+            "corrente_a": 11.51
+          }
+        }
+      },
+      "serie": [
+        {
+          "instante": "2026-01-01 17:30:00",
+          "score": 5.389,
+          "anomalia": 1
+        },
+        {
+          "instante": "2026-01-01 17:35:00",
+          "score": 0.422,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 17:40:00",
+          "score": 1.417,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 17:45:00",
+          "score": 0.596,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 17:50:00",
+          "score": 0.83,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 17:55:00",
+          "score": 0.805,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 18:00:00",
+          "score": 0.996,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 18:05:00",
+          "score": 0.716,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 18:10:00",
+          "score": 1.035,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 18:15:00",
+          "score": 0.967,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 18:20:00",
+          "score": 0.59,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 18:25:00",
+          "score": 0.795,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 18:30:00",
+          "score": 0.705,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 18:35:00",
+          "score": 0.33,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 18:40:00",
+          "score": 1.321,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 18:45:00",
+          "score": 0.745,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 18:50:00",
+          "score": 0.801,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 18:55:00",
+          "score": 0.862,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 19:00:00",
+          "score": 1.102,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 19:05:00",
+          "score": 0.394,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 19:10:00",
+          "score": 1.01,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 19:15:00",
+          "score": 1.161,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 19:20:00",
+          "score": 0.784,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 19:25:00",
+          "score": 0.848,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 19:30:00",
+          "score": 1.24,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 19:35:00",
+          "score": 1.316,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 19:40:00",
+          "score": 0.898,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 19:45:00",
+          "score": 0.471,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 19:50:00",
+          "score": 1.316,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 19:55:00",
+          "score": 0.955,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 20:00:00",
+          "score": 1.339,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 20:05:00",
+          "score": 0.429,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 20:10:00",
+          "score": 0.331,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 20:15:00",
+          "score": 0.639,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 20:20:00",
+          "score": 1.285,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 20:25:00",
+          "score": 0.626,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 20:30:00",
+          "score": 0.516,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 20:35:00",
+          "score": 1.139,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 20:40:00",
+          "score": 0.891,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 20:45:00",
+          "score": 0.916,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 20:50:00",
+          "score": 0.896,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 20:55:00",
+          "score": 1.321,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 21:00:00",
+          "score": 0.802,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 21:05:00",
+          "score": 0.682,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 21:10:00",
+          "score": 0.927,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 21:15:00",
+          "score": 0.887,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 21:20:00",
+          "score": 1.478,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 21:25:00",
+          "score": 0.459,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 21:30:00",
+          "score": 0.623,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 21:35:00",
+          "score": 0.748,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 21:40:00",
+          "score": 0.249,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 21:45:00",
+          "score": 0.797,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 21:50:00",
+          "score": 1.171,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 21:55:00",
+          "score": 1.66,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 22:00:00",
+          "score": 1.271,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 22:05:00",
+          "score": 0.473,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 22:10:00",
+          "score": 0.997,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 22:15:00",
+          "score": 0.533,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 22:20:00",
+          "score": 1.169,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 22:25:00",
+          "score": 1.127,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 22:30:00",
+          "score": 0.864,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 22:35:00",
+          "score": 1.015,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 22:40:00",
+          "score": 0.86,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 22:45:00",
+          "score": 0.722,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 22:50:00",
+          "score": 0.759,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 22:55:00",
+          "score": 0.692,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 23:00:00",
+          "score": 1.277,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 23:05:00",
+          "score": 1.066,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 23:10:00",
+          "score": 0.507,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 23:15:00",
+          "score": 0.661,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 23:20:00",
+          "score": 1.248,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 23:25:00",
+          "score": 0.878,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 23:30:00",
+          "score": 0.806,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 23:35:00",
+          "score": 0.776,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 23:40:00",
+          "score": 0.261,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 23:45:00",
+          "score": 0.402,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 23:50:00",
+          "score": 0.878,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 23:55:00",
+          "score": 0.952,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-02 00:00:00",
+          "score": 1.745,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-02 00:05:00",
+          "score": 0.684,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-02 00:10:00",
+          "score": 0.411,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-02 00:15:00",
+          "score": 0.677,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-02 00:20:00",
+          "score": 0.747,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-02 00:25:00",
+          "score": 1.451,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-02 00:30:00",
+          "score": 1.336,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-02 00:35:00",
+          "score": 0.985,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-02 00:40:00",
+          "score": 1.614,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-02 00:45:00",
+          "score": 1.186,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-02 00:50:00",
+          "score": 0.976,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-02 00:55:00",
+          "score": 0.333,
+          "anomalia": 0
+        }
+      ],
+      "modelo": "gpt-4.1-mini-2025-04-14",
+      "duracao_segundos": 2.804,
+      "uso": {
+        "input_tokens": 3971,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 358,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 4329
+      },
+      "tipo_geracao": "OpenAI Responses API"
+    }
+  },
+  {
+    "id": "03_informacao_insuficiente",
+    "pergunta": "Qual foi a última troca de rolamento do motor 3, em que data e qual técnico realizou o serviço?",
+    "esperado": "Declarar que não há histórico de manutenção e não inventar data ou técnico.",
+    "executado_em_utc": "2026-11-04T22:12:10.737279+00:00",
+    "filtros": {
+      "motor_id": 3,
+      "inicio": "2026-01-01T17:30:00",
+      "fim": "2026-01-02T00:59:00"
+    },
+    "verificacao_automatica": true,
+    "resultado": {
+      "resposta": "Não há informação disponível sobre a última troca de rolamento do motor 3, nem a data ou o técnico responsável pelo serviço, pois o banco não contém dados de históricos de manutenção, ordens de serviço ou nomes de técnicos.",
+      "fontes": [
+        {
+          "id": "O1",
+          "tipo": "operacional",
+          "titulo": "Histórico e resultados dos modelos",
+          "arquivo": "motor.db / anomalias_leituras.csv",
+          "pagina": null,
+          "trecho": "{\"disponivel\": true, \"origem\": \"motor.db e dados_resultado/anomalias_leituras.csv\", \"dados_sinteticos\": true, \"motor\": {\"motor_id\": 3, \"fabricante\": \"Toshiba\", \"modelo\": \"EQP-Global\", \"potencia_kw\": 11.0, \"ano_instalacao\": 2025}, \"motor_id\": 3, \"inicio\": \"2026-01-01 17:30:00\", \"fim\": \"2026-01-02 00:59:00\", \"quantidade_leituras\": 450, \"motores\": 1, \"rotulos_historicos\": {\"0\": 448, \"1\": 2}, \"sensores\": {\"rotacao_rpm\": {\"minimo\": 1665.1, \"media\": 1764.3122, \"maximo\": 1839.81}, \"vibracao_mm_s\": {\"minimo\": 2.296, \"media\": 3.362691111111111, \"maximo\": 10.253}, \"temperatura_c\": {\"minimo\": 53.89, \"media\": 62.15295555555555, \"maximo\": 69.24}, \"corrente_a\": {\"minimo\": 9.57, \"media\": 11.321311111111111, \"maximo\": 13.1}}, \"anomalias_baseline\": 2, \"anomalias_isolation_forest\": 4, \"anomalias_unicas\": 4, \"anomalias_ambos_detectores\": 2, \"score_maximo\": 6.155208215443032, \"historico_manutencao_disponivel\": false, \"ultima_leitura\": {\"instante\": \"2026-01-02 00:59:00\", \"classe_prevista\": \"Normal\", \"codigo_classe\": 0, \"probabilidade\": 0.987579, \"probabilidades\": {\"Normal\": 0.987579, \"Desbalanceamento\": 0.004456, \"Superaquecimento\": 0.004593, \"Falha mecânica\": 0.003372}, \"score_anomalia\": 0.883763, \"limiar\": 2.466647889849215, \"anomalia\": false, \"score_isolation_forest\": -0.06801887662407158, \"severidade\": \"baixo\", \"referencia\": \"por motor\", \"leituras\": {\"rotacao_rpm\": 1728.94, \"vibracao_mm_s\": 3.121, \"temperatura_c\": 65.59, \"corrente_a\": 11.51}}}"
+        },
+        {
+          "id": "F1",
+          "tipo": "documento",
+          "titulo": "Guia de interpretação dos modelos",
+          "arquivo": "interpretacao_modelos.md",
+          "pagina": null,
+          "trecho": "informações O banco não contém ordens de serviço, nomes de técnicos, datas de troca de peças ou intervenções de manutenção. Não inferir que uma falha rotulada corresponde a uma manutenção realizada. Se a pergunta pedir esses dados, informar a ausência e solicitar o histórico de manutenção. Para motor não cadastrado, não afirmar que existe perfil específico; a função de inferência original pode utilizar referência global, mas consultas históricas devem indicar o cadastro ausente. ## Limitação da simulação Os padrões da base foram construídos artificialmente. Nas rampas de falha, o desvio pode aparecer antes do rótulo histórico. Um alerta diante de rótulo normal não comprova sozinho erro do detector. As métricas obtidas nesta base não demonstram redução de custo, prevenção de incidentes ou desempenho em operação real.",
+          "fragmento_id": "5cabd8f88b48",
+          "sha256": "36485f995ccd7a6323ba7c96277660c23cede94514e2d540dbc51901b272773f",
+          "similaridade": 0.09309,
+          "origem": "Consolidação da equipe na Sprint 04, baseada no código das Sprints 02 e 03"
+        }
+      ],
+      "informacao_insuficiente": true,
+      "contexto_operacional": {
+        "disponivel": true,
+        "origem": "motor.db e dados_resultado/anomalias_leituras.csv",
+        "dados_sinteticos": true,
+        "motor": {
+          "motor_id": 3,
+          "fabricante": "Toshiba",
+          "modelo": "EQP-Global",
+          "potencia_kw": 11.0,
+          "ano_instalacao": 2025
+        },
+        "motor_id": 3,
+        "inicio": "2026-01-01 17:30:00",
+        "fim": "2026-01-02 00:59:00",
+        "quantidade_leituras": 450,
+        "motores": 1,
+        "rotulos_historicos": {
+          "0": 448,
+          "1": 2
+        },
+        "sensores": {
+          "rotacao_rpm": {
+            "minimo": 1665.1,
+            "media": 1764.3122,
+            "maximo": 1839.81
+          },
+          "vibracao_mm_s": {
+            "minimo": 2.296,
+            "media": 3.362691111111111,
+            "maximo": 10.253
+          },
+          "temperatura_c": {
+            "minimo": 53.89,
+            "media": 62.15295555555555,
+            "maximo": 69.24
+          },
+          "corrente_a": {
+            "minimo": 9.57,
+            "media": 11.321311111111111,
+            "maximo": 13.1
+          }
+        },
+        "anomalias_baseline": 2,
+        "anomalias_isolation_forest": 4,
+        "anomalias_unicas": 4,
+        "anomalias_ambos_detectores": 2,
+        "score_maximo": 6.155208215443032,
+        "historico_manutencao_disponivel": false,
+        "ultima_leitura": {
+          "instante": "2026-01-02 00:59:00",
+          "classe_prevista": "Normal",
+          "codigo_classe": 0,
+          "probabilidade": 0.987579,
+          "probabilidades": {
+            "Normal": 0.987579,
+            "Desbalanceamento": 0.004456,
+            "Superaquecimento": 0.004593,
+            "Falha mecânica": 0.003372
+          },
+          "score_anomalia": 0.883763,
+          "limiar": 2.466647889849215,
+          "anomalia": false,
+          "score_isolation_forest": -0.06801887662407158,
+          "severidade": "baixo",
+          "referencia": "por motor",
+          "leituras": {
+            "rotacao_rpm": 1728.94,
+            "vibracao_mm_s": 3.121,
+            "temperatura_c": 65.59,
+            "corrente_a": 11.51
+          }
+        }
+      },
+      "serie": [
+        {
+          "instante": "2026-01-01 17:30:00",
+          "score": 5.389,
+          "anomalia": 1
+        },
+        {
+          "instante": "2026-01-01 17:35:00",
+          "score": 0.422,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 17:40:00",
+          "score": 1.417,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 17:45:00",
+          "score": 0.596,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 17:50:00",
+          "score": 0.83,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 17:55:00",
+          "score": 0.805,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 18:00:00",
+          "score": 0.996,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 18:05:00",
+          "score": 0.716,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 18:10:00",
+          "score": 1.035,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 18:15:00",
+          "score": 0.967,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 18:20:00",
+          "score": 0.59,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 18:25:00",
+          "score": 0.795,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 18:30:00",
+          "score": 0.705,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 18:35:00",
+          "score": 0.33,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 18:40:00",
+          "score": 1.321,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 18:45:00",
+          "score": 0.745,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 18:50:00",
+          "score": 0.801,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 18:55:00",
+          "score": 0.862,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 19:00:00",
+          "score": 1.102,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 19:05:00",
+          "score": 0.394,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 19:10:00",
+          "score": 1.01,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 19:15:00",
+          "score": 1.161,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 19:20:00",
+          "score": 0.784,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 19:25:00",
+          "score": 0.848,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 19:30:00",
+          "score": 1.24,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 19:35:00",
+          "score": 1.316,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 19:40:00",
+          "score": 0.898,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 19:45:00",
+          "score": 0.471,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 19:50:00",
+          "score": 1.316,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 19:55:00",
+          "score": 0.955,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 20:00:00",
+          "score": 1.339,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 20:05:00",
+          "score": 0.429,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 20:10:00",
+          "score": 0.331,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 20:15:00",
+          "score": 0.639,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 20:20:00",
+          "score": 1.285,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 20:25:00",
+          "score": 0.626,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 20:30:00",
+          "score": 0.516,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 20:35:00",
+          "score": 1.139,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 20:40:00",
+          "score": 0.891,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 20:45:00",
+          "score": 0.916,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 20:50:00",
+          "score": 0.896,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 20:55:00",
+          "score": 1.321,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 21:00:00",
+          "score": 0.802,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 21:05:00",
+          "score": 0.682,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 21:10:00",
+          "score": 0.927,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 21:15:00",
+          "score": 0.887,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 21:20:00",
+          "score": 1.478,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 21:25:00",
+          "score": 0.459,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 21:30:00",
+          "score": 0.623,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 21:35:00",
+          "score": 0.748,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 21:40:00",
+          "score": 0.249,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 21:45:00",
+          "score": 0.797,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 21:50:00",
+          "score": 1.171,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 21:55:00",
+          "score": 1.66,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 22:00:00",
+          "score": 1.271,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 22:05:00",
+          "score": 0.473,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 22:10:00",
+          "score": 0.997,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 22:15:00",
+          "score": 0.533,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 22:20:00",
+          "score": 1.169,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 22:25:00",
+          "score": 1.127,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 22:30:00",
+          "score": 0.864,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 22:35:00",
+          "score": 1.015,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 22:40:00",
+          "score": 0.86,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 22:45:00",
+          "score": 0.722,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 22:50:00",
+          "score": 0.759,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 22:55:00",
+          "score": 0.692,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 23:00:00",
+          "score": 1.277,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 23:05:00",
+          "score": 1.066,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 23:10:00",
+          "score": 0.507,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 23:15:00",
+          "score": 0.661,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 23:20:00",
+          "score": 1.248,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 23:25:00",
+          "score": 0.878,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 23:30:00",
+          "score": 0.806,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 23:35:00",
+          "score": 0.776,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 23:40:00",
+          "score": 0.261,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 23:45:00",
+          "score": 0.402,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 23:50:00",
+          "score": 0.878,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-01 23:55:00",
+          "score": 0.952,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-02 00:00:00",
+          "score": 1.745,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-02 00:05:00",
+          "score": 0.684,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-02 00:10:00",
+          "score": 0.411,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-02 00:15:00",
+          "score": 0.677,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-02 00:20:00",
+          "score": 0.747,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-02 00:25:00",
+          "score": 1.451,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-02 00:30:00",
+          "score": 1.336,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-02 00:35:00",
+          "score": 0.985,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-02 00:40:00",
+          "score": 1.614,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-02 00:45:00",
+          "score": 1.186,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-02 00:50:00",
+          "score": 0.976,
+          "anomalia": 0
+        },
+        {
+          "instante": "2026-01-02 00:55:00",
+          "score": 0.333,
+          "anomalia": 0
+        }
+      ],
+      "modelo": "gpt-4.1-mini-2025-04-14",
+      "duracao_segundos": 1.17,
+      "uso": {
+        "input_tokens": 3830,
+        "input_tokens_details": {
+          "cache_write_tokens": 0,
+          "cached_tokens": 0
+        },
+        "output_tokens": 69,
+        "output_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "total_tokens": 3899
+      },
+      "tipo_geracao": "OpenAI Responses API"
+    }
+  }
+]

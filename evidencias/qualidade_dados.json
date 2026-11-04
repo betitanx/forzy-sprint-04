@@ -1,0 +1,18 @@
+{
+  "nulos_sensores": {
+    "rotacao_rpm": 0,
+    "vibracao_mm_s": 0,
+    "temperatura_c": 0,
+    "corrente_a": 0
+  },
+  "pares_motor_instante_duplicados": 0,
+  "intervalos_segundos": [
+    [
+      60.0,
+      29980
+    ]
+  ],
+  "linhas": 30000,
+  "motores": 20,
+  "negativos_rotacao_vibracao_corrente": 0
+}

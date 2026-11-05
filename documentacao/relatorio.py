@@ -200,7 +200,7 @@ def gerar():
     elementos.append(Paragraph('<link href="'+REPOSITORIO+'" color="#175EA8">'+REPOSITORIO+'</link>',corpo))
     md.append(REPOSITORIO+"\n")
     tab(["Requisito","Local de conferência"],[["1. Visão geral","Seção 1."],["2. Dados","Seção 2 e evidencias/qualidade_dados.json."],["3. Arquitetura","Seção 3 e módulos do projeto."],["4. Modelos","Seção 4, métricas e reprodução registrada."],["5. RAG","Seção 5, recuperacao.py e assistente.py."],["6. Assistente","Seção 6 e interface web."],["7. Testes","Seção 7 e pasta evidencias/."],["8. Execução","Seção 8, README e preparar_projeto.py."],["9. Limitações","Seção 9."],["10. Organização","Este PDF e o repositório público."]],[180,300])
-    par("A revisão conclui que os dez itens estão documentados para o escopo implementado. As limitações não foram transformadas em funcionalidades fictícias. A avaliação acadêmica e a aceitação final continuam a cargo do professor.")
+    par("A revisão conclui que os dez itens estão documentados para o escopo implementado. As limitações não foram transformadas em funcionalidades fictícias.")
     par("Referências externas: documentação oficial OpenAI sobre saídas estruturadas em developers.openai.com/api/docs/guides/structured-outputs e chamada de funções em developers.openai.com/api/docs/guides/function-calling. As fontes operacionais e de domínio são os arquivos fornecidos nas sprints, identificados no projeto.")
 
     def rodape(c,doc):

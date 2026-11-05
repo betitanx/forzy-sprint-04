@@ -318,6 +318,6 @@ https://github.com/betitanx/forzy-sprint-04
 | 9. Limitações | Seção 9. |
 | 10. Organização | Este PDF e o repositório público. |
 
-A revisão conclui que os dez itens estão documentados para o escopo implementado. As limitações não foram transformadas em funcionalidades fictícias. A avaliação acadêmica e a aceitação final continuam a cargo do professor.
+A revisão conclui que os dez itens estão documentados para o escopo implementado. As limitações não foram transformadas em funcionalidades fictícias.
 
 Referências externas: documentação oficial OpenAI sobre saídas estruturadas em developers.openai.com/api/docs/guides/structured-outputs e chamada de funções em developers.openai.com/api/docs/guides/function-calling. As fontes operacionais e de domínio são os arquivos fornecidos nas sprints, identificados no projeto.

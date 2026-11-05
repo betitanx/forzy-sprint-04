@@ -18,7 +18,7 @@
     5,
     6
   ],
-  "sha256": "1d8705b83b29648b3587ccba1d0cb01635f61ae11df9a0525ba8e82f30f6b5b4",
+  "sha256": "cb5f05b195e0f861ca34f55ffd91a935b912ad303dfa5e68ea9dcb838340bc36",
   "caracteres_por_pagina": [
     573,
     1399,
@@ -32,7 +32,7 @@
     1630,
     1863,
     1430,
-    1377
+    1303
   ],
   "revisao_visual_aprovada": true,
   "tabelas_sem_cortes": true,
@@ -41,6 +41,7 @@
   "detalhes_azuis": true,
   "instrucoes_locais_simplificadas": true,
   "paginas_alteradas_nesta_revisao": [
-    11
-  ]
+    13
+  ],
+  "secao_10_sem_referencia_a_professor": true
 }

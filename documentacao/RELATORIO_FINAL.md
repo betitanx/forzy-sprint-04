@@ -2,7 +2,7 @@
 
 FORZY
 
-Documentação final da solução - Sprint 04
+Documentação final da solução - Sprint 04 Generative AI & Advanced Nets
 
 Assistente conversacional para análise de motores, com classificação de falhas, detecção de anomalias e recuperação de documentos.
 
@@ -181,7 +181,8 @@ Análise
 
 Os números correspondem ao recorte: 450 leituras, 2 alertas do baseline, 4 do Isolation Forest e 4 leituras anômalas únicas. O maior score foi aproximadamente 6,1552. A última leitura, isoladamente, foi normal segundo o classificador e ficou abaixo do limiar do detector. Portanto, a condição final não apaga os alertas anteriores.
 
-Registro de execução: 2026-11-04T22:12:06.532553+00:00 (UTC). Modelo retornado: gpt-4.1-mini-2025-04-14. Duração: 3.161 segundos.
+Registro de execução: 04/11/2026 às 19:12:06 (horário de Brasília).
+Modelo retornado: gpt-4.1-mini-2025-04-14. Duração: 3,161 segundos.
 
 Cenário 2: dados e documentação
 
@@ -205,7 +206,8 @@ Análise
 
 A resposta reúne a fonte operacional e documentos recuperados. A explicação é limitada à base sintética e ao guia da equipe, sem alegar que houve consulta a manual de fabricante. O roteiro orienta a investigação, sem prescrever intervenção física.
 
-Registro de execução: 2026-11-04T22:12:09.438585+00:00 (UTC). Modelo retornado: gpt-4.1-mini-2025-04-14. Duração: 2.804 segundos.
+Registro de execução: 04/11/2026 às 19:12:09 (horário de Brasília).
+Modelo retornado: gpt-4.1-mini-2025-04-14. Duração: 2,804 segundos.
 
 Cenário 3: informação insuficiente
 
@@ -228,7 +230,8 @@ Análise
 
 A resposta reconhece a ausência do histórico e não inventa data, técnico ou troca de peça. O teste demonstra esse comportamento no exemplo executado, sem garantir ausência de alucinações em qualquer pergunta.
 
-Registro de execução: 2026-11-04T22:12:10.737279+00:00 (UTC). Modelo retornado: gpt-4.1-mini-2025-04-14. Duração: 1.17 segundos.
+Registro de execução: 04/11/2026 às 19:12:10 (horário de Brasília).
+Modelo retornado: gpt-4.1-mini-2025-04-14. Duração: 1,17 segundos.
 
 Outras verificações
 
@@ -245,7 +248,7 @@ Requisitos: Python 3.13, acesso à internet para instalar dependências e consul
 
 Obter o projeto
 
-Use o ZIP completo ou clone o repositório público indicado na seção 10. O ZIP traz os modelos prontos; o repositório guarda o código e a base necessários para regenerá-los, evitando arquivos binários grandes no histórico Git.
+Clone o repositório público indicado na seção 10. Ele contém o código e a base necessários para preparar os modelos no computador de quem executará o projeto, sem depender de arquivos existentes no computador da equipe.
 
 Instalar as dependências
 
@@ -255,7 +258,7 @@ python -m venv .venv
 
 Configurar a chave
 
-Copie .env.example para .env.local e preencha OPENAI_API_KEY de forma privada. OPENAI_MODEL é opcional e tem gpt-4.1-mini como padrão. A chave não deve entrar no GitHub, no ZIP, em capturas ou em registros de execução.
+Copie .env.example para .env.local e preencha OPENAI_API_KEY de forma privada. OPENAI_MODEL é opcional e tem gpt-4.1-mini como padrão. A chave não deve entrar no GitHub, em capturas ou em registros de execução.
 
 Preparar e iniciar
 
@@ -265,7 +268,9 @@ Preparar e iniciar
 
 .\.venv\Scripts\python.exe app.py
 
-Abra http://127.0.0.1:8501. O primeiro comando treina somente os componentes cujos arquivos necessários estão ausentes. O segundo prepara o inventário documental. O terceiro inicia o servidor apenas na máquina local. Para encerrar, pressione Ctrl+C no terminal.
+Após iniciar o servidor, abra http://localhost:8501 no navegador da mesma máquina. Localhost, também representado por 127.0.0.1, sempre aponta para o próprio computador de quem usa o endereço. Cada avaliador deve executar o projeto no seu PC; esse endereço não acessa o computador da equipe.
+
+Os comandos acima preparam os modelos ausentes, indexam os documentos e iniciam o servidor local, nessa ordem. Para encerrar, pressione Ctrl+C no terminal.
 
 Para testar, execute python -m unittest discover -s testes -v pelo Python do ambiente virtual. avaliar_cenarios.py faz três chamadas reais à API, pode ter custo e atualiza suas evidências. Não é necessário executá-lo para simplesmente abrir o projeto.
 
@@ -296,7 +301,7 @@ A busca pode omitir trechos relevantes quando a pergunta usa palavras diferentes
 
 ## 10. Organização e conferência da entrega
 
-A entrega contém este PDF, o ZIP completo e o repositório público com o material necessário à execução e à análise técnica. O README apresenta a visão geral, a estrutura e os comandos. Modelos grandes são regenerados pelo código no repositório e já estão disponíveis no ZIP.
+A entrega é composta por este PDF e pelo repositório público no GitHub, que reúne o material necessário à execução e à análise técnica. O README apresenta a visão geral, a estrutura e os comandos. Os modelos são preparados localmente pelo código disponível no repositório.
 
 https://github.com/betitanx/forzy-sprint-04
 
@@ -311,7 +316,7 @@ https://github.com/betitanx/forzy-sprint-04
 | 7. Testes | Seção 7 e pasta evidencias/. |
 | 8. Execução | Seção 8, README e preparar_projeto.py. |
 | 9. Limitações | Seção 9. |
-| 10. Organização | Esta seção, ZIP e repositório. |
+| 10. Organização | Este PDF e o repositório público. |
 
 A revisão conclui que os dez itens estão documentados para o escopo implementado. As limitações não foram transformadas em funcionalidades fictícias. A avaliação acadêmica e a aceitação final continuam a cargo do professor.
 

@@ -43,7 +43,7 @@ Novas mensagens, comentários e documentação em português-BR. Identificadores
 3. Declarar ausência de informação ao consultar manutenção inexistente, sem inventar intervenções.
 4. Pedir esclarecimento para motor ambíguo, rejeitar período inválido e tratar erros de API sem simular sucesso.
 5. Demonstrar os três cenários com respostas reais da API e preservar evidências.
-6. Entregar código, README, dependências, PDF e pacote sem credenciais.
+6. Entregar PDF e repositório público com código, README, dependências e evidências, sem credenciais.
 
 ## Limites
 

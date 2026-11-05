@@ -22,7 +22,7 @@ Solução acadêmica da Sprint 04: consulta de sensores, classificação de falh
 
 Pré-requisitos: Python 3.13 e internet para instalar dependências e consultar a OpenAI. Para gerar respostas, use uma chave própria com acesso ao modelo e disponibilidade de uso. O consumo da API pode ser cobrado. Treinamento, busca e testes locais funcionam sem chamadas à API.
 
-Depois de clonar este repositório ou extrair o ZIP, abra o PowerShell na pasta do projeto:
+Clone este repositório e abra o PowerShell na pasta do projeto:
 
 ```powershell
 python -m venv .venv
@@ -31,7 +31,7 @@ python -m venv .venv
 .\.venv\Scripts\python.exe indexar_documentos.py
 ```
 
-O repositório contém o banco sintético e o código para regenerar os modelos. O ZIP completo já inclui modelos e resultados; nesse caso, `preparar_projeto.py` apenas confirma a disponibilidade. O script só treina componentes cujos arquivos necessários estejam ausentes. Não modifica o banco.
+O repositório contém o banco sintético e o código para preparar os modelos no computador de quem executa o projeto. `preparar_projeto.py` só treina componentes cujos arquivos necessários estejam ausentes e não modifica o banco.
 
 Copie `.env.example` para `.env.local` e preencha `OPENAI_API_KEY` de forma privada. `OPENAI_MODEL` é opcional; o padrão é `gpt-4.1-mini`. Não publique esse arquivo nem inclua a chave em capturas ou mensagens.
 
@@ -39,7 +39,7 @@ Copie `.env.example` para `.env.local` e preencha `OPENAI_API_KEY` de forma priv
 .\.venv\Scripts\python.exe app.py
 ```
 
-Abra **http://127.0.0.1:8501**. Encerre com Ctrl+C. Para outra porta, use `app.py --porta 8502`. A aplicação escuta somente na máquina local e não inclui autenticação para publicação na internet.
+Após iniciar o servidor, abra **http://localhost:8501** no navegador da mesma máquina. `localhost` e `127.0.0.1` apontam para o próprio computador de quem usa o endereço. Cada avaliador precisa executar o projeto no seu PC; esse endereço não acessa o computador da equipe. Encerre com Ctrl+C. Para outra porta, use `app.py --porta 8502`. A aplicação é local e não inclui autenticação para publicação na internet.
 
 ## Uso
 

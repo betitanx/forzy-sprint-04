@@ -3,7 +3,9 @@ from __future__ import annotations
 
 import html
 import json
+from datetime import datetime
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4
@@ -18,6 +20,13 @@ REPOSITORIO = "https://github.com/betitanx/forzy-sprint-04"
 AZUL = colors.HexColor("#175EA8")
 AZUL_CLARO = colors.HexColor("#EDF4FC")
 PRETO = colors.black
+
+
+def formatar_horario_brasil(valor):
+    data = datetime.fromisoformat(valor.replace("Z", "+00:00"))
+    if data.tzinfo is None:
+        raise ValueError("O registro de execução precisa informar seu fuso horário.")
+    return data.astimezone(ZoneInfo("America/Sao_Paulo")).strftime("%d/%m/%Y às %H:%M:%S") + " (horário de Brasília)"
 
 
 class Fluxo(Flowable):
@@ -85,7 +94,7 @@ def gerar():
 
     elementos.append(Spacer(1,25*mm))
     par("FORZY",titulo)
-    par("Documentação final da solução - Sprint 04",titulo)
+    par("Documentação final da solução - Sprint 04 Generative AI & Advanced Nets",titulo)
     elementos.append(HRFlowable(width="100%",thickness=2,color=AZUL,spaceAfter=16))
     par("Assistente conversacional para análise de motores, com classificação de falhas, detecção de anomalias e recuperação de documentos.")
     par("Versão revisada para entrega - 4 de novembro de 2026.")
@@ -121,6 +130,7 @@ def gerar():
     par("A divisão cronológica por motor reserva 21.000 leituras para treino (70%) e 9.000 para teste (30%). Foi mantida a versão anterior de maior recall das falhas. O teste não representa validação externa independente dessa seleção.")
     tab(["Classe","Precisão","Recall","F1"],[[nome,numero(classificacao['classification_report'][nome]['precision']),numero(classificacao['classification_report'][nome]['recall']),numero(classificacao['classification_report'][nome]['f1-score'])] for nome in ["Normal","Desbalanceamento","Superaquecimento","Falha mecânica"]],[195,95,95,95])
     par("A acurácia foi 0,9638 e o F1 macro foi 0,8868. Precisão indica a proporção de acertos entre os casos classificados em uma classe; recall indica quanto dos casos reais dessa classe foi encontrado. F1 equilibra as duas medidas.")
+    elementos.append(Spacer(1,12))
     sub("Referência normal e anomalias - Sprint 03")
     par("A divisão cronológica por motor usa 16.800 registros no treino (56%), 4.200 na validação (14%) e 9.000 no teste (30%). O ajuste usa somente exemplos normais. Os rótulos selecionam esse treino e servem à calibração e à avaliação; não são atributos de entrada.")
     par("O baseline resume os desvios dos quatro sensores em relação à média e ao desvio-padrão normal do motor. O Isolation Forest usa 400 árvores, semente 42 e oito entradas normalizadas: quatro desvios assinados e seus valores absolutos.")
@@ -157,7 +167,7 @@ def gerar():
         tab(["Fonte","Origem consultada"],[[f['id'],f['arquivo']+(f" - página {f['pagina']}" if f.get('pagina') else '')] for f in cenario['resultado']['fontes']],[65,415])
         sub("Análise")
         par(["Os números correspondem ao recorte: 450 leituras, 2 alertas do baseline, 4 do Isolation Forest e 4 leituras anômalas únicas. O maior score foi aproximadamente 6,1552. A última leitura, isoladamente, foi normal segundo o classificador e ficou abaixo do limiar do detector. Portanto, a condição final não apaga os alertas anteriores.","A resposta reúne a fonte operacional e documentos recuperados. A explicação é limitada à base sintética e ao guia da equipe, sem alegar que houve consulta a manual de fabricante. O roteiro orienta a investigação, sem prescrever intervenção física.","A resposta reconhece a ausência do histórico e não inventa data, técnico ou troca de peça. O teste demonstra esse comportamento no exemplo executado, sem garantir ausência de alucinações em qualquer pergunta."][i])
-        par("Registro de execução: "+cenario['executado_em_utc']+" (UTC). Modelo retornado: "+cenario['resultado']['modelo']+". Duração: "+str(cenario['resultado']['duracao_segundos'])+" segundos.")
+        par("Registro de execução: "+formatar_horario_brasil(cenario['executado_em_utc'])+".\nModelo retornado: "+cenario['resultado']['modelo']+". Duração: "+str(cenario['resultado']['duracao_segundos']).replace(".",",")+" segundos.")
     sub("Outras verificações")
     par("A revisão atual ampliou a suíte para 12 testes locais. Eles cobrem períodos inválidos, motor inexistente, falta de leituras, valores não finitos, divergência de motor, restrições documentais, busca sem correspondência, citações inexistentes e contagem sem duplicidade entre detectores.")
     par("A interface foi verificada em Chromium nas larguras de 320, 768, 1.024 e 1.440 pixels, sem rolagem horizontal. A consulta recebeu HTTP 200 e exibiu as fontes, sem erros de console. As capturas estão em evidencias/. Foram mantidas fora do corpo deste PDF para preservar a padronização tipográfica e de cores solicitada.")
@@ -165,16 +175,17 @@ def gerar():
     secao("8. Instalação, preparação e execução")
     par("Requisitos: Python 3.13, acesso à internet para instalar dependências e consultar a OpenAI, e uma chave válida para o projeto escolhido. O uso da API depende do acesso ao modelo e da disponibilidade de saldo ou limite. Os testes locais e a preparação dos modelos não exigem chamada à API.")
     sub("Obter o projeto")
-    par("Use o ZIP completo ou clone o repositório público indicado na seção 10. O ZIP traz os modelos prontos; o repositório guarda o código e a base necessários para regenerá-los, evitando arquivos binários grandes no histórico Git.")
+    par("Clone o repositório público indicado na seção 10. Ele contém o código e a base necessários para preparar os modelos no computador de quem executará o projeto, sem depender de arquivos existentes no computador da equipe.")
     sub("Instalar as dependências")
     for comando in ["python -m venv .venv",r".\.venv\Scripts\python.exe -m pip install -r requirements-lock.txt"]:
         par(comando)
     sub("Configurar a chave")
-    par("Copie .env.example para .env.local e preencha OPENAI_API_KEY de forma privada. OPENAI_MODEL é opcional e tem gpt-4.1-mini como padrão. A chave não deve entrar no GitHub, no ZIP, em capturas ou em registros de execução.")
+    par("Copie .env.example para .env.local e preencha OPENAI_API_KEY de forma privada. OPENAI_MODEL é opcional e tem gpt-4.1-mini como padrão. A chave não deve entrar no GitHub, em capturas ou em registros de execução.")
     sub("Preparar e iniciar")
     for comando in [r".\.venv\Scripts\python.exe preparar_projeto.py",r".\.venv\Scripts\python.exe indexar_documentos.py",r".\.venv\Scripts\python.exe app.py"]:
         par(comando)
-    par("Abra http://127.0.0.1:8501. O primeiro comando treina somente os componentes cujos arquivos necessários estão ausentes. O segundo prepara o inventário documental. O terceiro inicia o servidor apenas na máquina local. Para encerrar, pressione Ctrl+C no terminal.")
+    par("Após iniciar o servidor, abra http://localhost:8501 no navegador da mesma máquina. Localhost, também representado por 127.0.0.1, sempre aponta para o próprio computador de quem usa o endereço. Cada avaliador deve executar o projeto no seu PC; esse endereço não acessa o computador da equipe.")
+    par("Os comandos acima preparam os modelos ausentes, indexam os documentos e iniciam o servidor local, nessa ordem. Para encerrar, pressione Ctrl+C no terminal.")
     par("Para testar, execute python -m unittest discover -s testes -v pelo Python do ambiente virtual. avaliar_cenarios.py faz três chamadas reais à API, pode ter custo e atualiza suas evidências. Não é necessário executá-lo para simplesmente abrir o projeto.")
     par("Se a chave não for aceita, confira a configuração privada. Se houver erro de saldo ou limite, confira o projeto OpenAI. Se faltarem os modelos ou o CSV de resultados, execute preparar_projeto.py. Para mudar a porta, use app.py --porta 8502. As versões completas do ambiente testado estão em requirements-lock.txt.")
 
@@ -185,10 +196,10 @@ def gerar():
     tab(["Prioridade","Próxima evolução"],[["Alta","Adicionar manuais e registros de manutenção autorizados, com identificação do ativo e versão."],["Alta","Avaliar dados reais e respostas com especialistas, antes de uso industrial."],["Alta","Ampliar testes de sustentação das respostas, informação ausente e ataques ao contexto."],["Média","Comparar a busca lexical com busca semântica e medir a recuperação em corpus maior."],["Média","Rever limiares e severidade conforme os custos reais de erros e alertas."],["Média","Adicionar autenticação e ingestão contínua somente se o projeto evoluir além do uso local."]],[85,395])
 
     secao("10. Organização e conferência da entrega")
-    par("A entrega contém este PDF, o ZIP completo e o repositório público com o material necessário à execução e à análise técnica. O README apresenta a visão geral, a estrutura e os comandos. Modelos grandes são regenerados pelo código no repositório e já estão disponíveis no ZIP.")
+    par("A entrega é composta por este PDF e pelo repositório público no GitHub, que reúne o material necessário à execução e à análise técnica. O README apresenta a visão geral, a estrutura e os comandos. Os modelos são preparados localmente pelo código disponível no repositório.")
     elementos.append(Paragraph('<link href="'+REPOSITORIO+'" color="#175EA8">'+REPOSITORIO+'</link>',corpo))
     md.append(REPOSITORIO+"\n")
-    tab(["Requisito","Local de conferência"],[["1. Visão geral","Seção 1."],["2. Dados","Seção 2 e evidencias/qualidade_dados.json."],["3. Arquitetura","Seção 3 e módulos do projeto."],["4. Modelos","Seção 4, métricas e reprodução registrada."],["5. RAG","Seção 5, recuperacao.py e assistente.py."],["6. Assistente","Seção 6 e interface web."],["7. Testes","Seção 7 e pasta evidencias/."],["8. Execução","Seção 8, README e preparar_projeto.py."],["9. Limitações","Seção 9."],["10. Organização","Esta seção, ZIP e repositório."]],[180,300])
+    tab(["Requisito","Local de conferência"],[["1. Visão geral","Seção 1."],["2. Dados","Seção 2 e evidencias/qualidade_dados.json."],["3. Arquitetura","Seção 3 e módulos do projeto."],["4. Modelos","Seção 4, métricas e reprodução registrada."],["5. RAG","Seção 5, recuperacao.py e assistente.py."],["6. Assistente","Seção 6 e interface web."],["7. Testes","Seção 7 e pasta evidencias/."],["8. Execução","Seção 8, README e preparar_projeto.py."],["9. Limitações","Seção 9."],["10. Organização","Este PDF e o repositório público."]],[180,300])
     par("A revisão conclui que os dez itens estão documentados para o escopo implementado. As limitações não foram transformadas em funcionalidades fictícias. A avaliação acadêmica e a aceitação final continuam a cargo do professor.")
     par("Referências externas: documentação oficial OpenAI sobre saídas estruturadas em developers.openai.com/api/docs/guides/structured-outputs e chamada de funções em developers.openai.com/api/docs/guides/function-calling. As fontes operacionais e de domínio são os arquivos fornecidos nas sprints, identificados no projeto.")
 

@@ -13,7 +13,7 @@ Revisão de 4 de novembro de 2026. Referência: enunciado da documentação fina
 | 7. Testes e resultados | PDF, seção 7; `evidencias/cenarios.json`; capturas e registros | Três cenários completos com entrada, esperado, obtido e análise. A revisão adicionou proteção para citações agrupadas inválidas. |
 | 8. Instalação e execução | PDF, seção 8; README; `requirements-lock.txt`; `preparar_projeto.py` | Ambiente, variáveis, preparação dos modelos, indexação e inicialização descritos. GitHub pode funcionar sem armazenar modelos grandes. |
 | 9. Limitações e continuidade | PDF, seção 9; README | Limitações dos dados, modelos, busca e geração, além de prioridades futuras, registradas. |
-| 10. Organização final | PDF, seção 10; ZIP; repositório público `betitanx/forzy-sprint-04` | Código, documentação, fontes e evidências organizados. Credenciais, ambientes virtuais e temporários excluídos. |
+| 10. Organização final | PDF, seção 10; repositório público `betitanx/forzy-sprint-04` | Entrega composta pelo PDF e pelo GitHub. Código, documentação, fontes e evidências organizados. Credenciais, ambientes virtuais e temporários excluídos. |
 
 ## Correções realizadas nesta revisão
 
@@ -21,7 +21,8 @@ Revisão de 4 de novembro de 2026. Referência: enunciado da documentação fina
 - Complementação da documentação sobre dados ausentes, duplicatas, frequência e preparação.
 - Preparação reproduzível dos modelos para quem obtiver o projeto pelo GitHub.
 - Correção da conferência de referências agrupadas, como `[O1, F99]`, com teste de regressão.
-- Separação entre arquivos necessários no GitHub e modelos/resultados grandes fornecidos no ZIP.
+- Preparação local dos modelos para manter apenas os arquivos necessários no GitHub.
+- Título da capa com a identificação Generative AI & Advanced Nets, maior separação entre os blocos dos modelos, horários de execução em formato brasileiro e explicação de localhost.
 
 ## Limitações que não foram transformadas em funcionalidades
 

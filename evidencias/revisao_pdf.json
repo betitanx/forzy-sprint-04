@@ -8,25 +8,35 @@
     "/AAAAAA+ArialMT"
   ],
   "arial_12": true,
+  "horarios_em_brasilia": true,
+  "entrega_apenas_pdf_github": true,
+  "comentarios_aplicados": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "sha256": "103955ba2c9b4c4d20ca72bcfc7a96975e72734f7c1e4122bfd837ecd85d1dcc",
   "caracteres_por_pagina": [
-    543,
+    573,
     1399,
     1958,
     1222,
     1816,
     2222,
     1377,
-    2003,
-    2324,
-    1624,
-    1917,
+    2009,
+    2330,
+    1630,
+    2089,
     1430,
-    1376
+    1377
   ],
   "revisao_visual_aprovada": true,
-  "texto_preto": true,
-  "detalhes_azuis": true,
-  "equipe_conferida": true,
   "tabelas_sem_cortes": true,
-  "credenciais_no_pdf": false
+  "equipe_conferida": true,
+  "texto_preto": true,
+  "detalhes_azuis": true
 }

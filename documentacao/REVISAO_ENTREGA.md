@@ -28,4 +28,4 @@ Revisão de 4 de novembro de 2026. Referência: enunciado da documentação fina
 
 Não existem dados reais de operação, registros de manutenção ou manuais de fabricante no material recebido. A solução usa documentação da base e dos modelos e um guia acadêmico de interpretação. A documentação atende ao escopo demonstrado, mas não afirma validação industrial, diagnóstico definitivo ou integração a ordens de serviço.
 
-Os testes conversacionais são exemplos executados, não uma garantia geral de precisão. As verificações automáticas das referências conferem identificadores e não substituem a análise do conteúdo. A avaliação acadêmica final cabe ao professor.
+Os testes conversacionais são exemplos executados, não uma garantia geral de precisão. As verificações automáticas das referências conferem identificadores e não substituem a análise do conteúdo.

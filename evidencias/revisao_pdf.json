@@ -18,7 +18,7 @@
     5,
     6
   ],
-  "sha256": "103955ba2c9b4c4d20ca72bcfc7a96975e72734f7c1e4122bfd837ecd85d1dcc",
+  "sha256": "1d8705b83b29648b3587ccba1d0cb01635f61ae11df9a0525ba8e82f30f6b5b4",
   "caracteres_por_pagina": [
     573,
     1399,
@@ -30,7 +30,7 @@
     2009,
     2330,
     1630,
-    2089,
+    1863,
     1430,
     1377
   ],
@@ -38,5 +38,9 @@
   "tabelas_sem_cortes": true,
   "equipe_conferida": true,
   "texto_preto": true,
-  "detalhes_azuis": true
+  "detalhes_azuis": true,
+  "instrucoes_locais_simplificadas": true,
+  "paginas_alteradas_nesta_revisao": [
+    11
+  ]
 }

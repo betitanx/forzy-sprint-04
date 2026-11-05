@@ -268,7 +268,7 @@ Preparar e iniciar
 
 .\.venv\Scripts\python.exe app.py
 
-Após iniciar o servidor, abra http://localhost:8501 no navegador da mesma máquina. Localhost, também representado por 127.0.0.1, sempre aponta para o próprio computador de quem usa o endereço. Cada avaliador deve executar o projeto no seu PC; esse endereço não acessa o computador da equipe.
+Após iniciar o servidor, abra http://localhost:8501 no navegador.
 
 Os comandos acima preparam os modelos ausentes, indexam os documentos e iniciam o servidor local, nessa ordem. Para encerrar, pressione Ctrl+C no terminal.
 

@@ -184,7 +184,7 @@ def gerar():
     sub("Preparar e iniciar")
     for comando in [r".\.venv\Scripts\python.exe preparar_projeto.py",r".\.venv\Scripts\python.exe indexar_documentos.py",r".\.venv\Scripts\python.exe app.py"]:
         par(comando)
-    par("Após iniciar o servidor, abra http://localhost:8501 no navegador da mesma máquina. Localhost, também representado por 127.0.0.1, sempre aponta para o próprio computador de quem usa o endereço. Cada avaliador deve executar o projeto no seu PC; esse endereço não acessa o computador da equipe.")
+    par("Após iniciar o servidor, abra http://localhost:8501 no navegador.")
     par("Os comandos acima preparam os modelos ausentes, indexam os documentos e iniciam o servidor local, nessa ordem. Para encerrar, pressione Ctrl+C no terminal.")
     par("Para testar, execute python -m unittest discover -s testes -v pelo Python do ambiente virtual. avaliar_cenarios.py faz três chamadas reais à API, pode ter custo e atualiza suas evidências. Não é necessário executá-lo para simplesmente abrir o projeto.")
     par("Se a chave não for aceita, confira a configuração privada. Se houver erro de saldo ou limite, confira o projeto OpenAI. Se faltarem os modelos ou o CSV de resultados, execute preparar_projeto.py. Para mudar a porta, use app.py --porta 8502. As versões completas do ambiente testado estão em requirements-lock.txt.")

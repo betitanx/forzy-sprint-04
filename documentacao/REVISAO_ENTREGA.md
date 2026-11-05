@@ -22,7 +22,7 @@ Revisão de 4 de novembro de 2026. Referência: enunciado da documentação fina
 - Preparação reproduzível dos modelos para quem obtiver o projeto pelo GitHub.
 - Correção da conferência de referências agrupadas, como `[O1, F99]`, com teste de regressão.
 - Preparação local dos modelos para manter apenas os arquivos necessários no GitHub.
-- Título da capa com a identificação Generative AI & Advanced Nets, maior separação entre os blocos dos modelos, horários de execução em formato brasileiro e explicação de localhost.
+- Título da capa com a identificação Generative AI & Advanced Nets, maior separação entre os blocos dos modelos, horários de execução em formato brasileiro e instrução breve de acesso à aplicação.
 
 ## Limitações que não foram transformadas em funcionalidades
 

@@ -39,7 +39,7 @@ Copie `.env.example` para `.env.local` e preencha `OPENAI_API_KEY` de forma priv
 .\.venv\Scripts\python.exe app.py
 ```
 
-Após iniciar o servidor, abra **http://localhost:8501** no navegador da mesma máquina. `localhost` e `127.0.0.1` apontam para o próprio computador de quem usa o endereço. Cada avaliador precisa executar o projeto no seu PC; esse endereço não acessa o computador da equipe. Encerre com Ctrl+C. Para outra porta, use `app.py --porta 8502`. A aplicação é local e não inclui autenticação para publicação na internet.
+Abra **http://localhost:8501**. Encerre com Ctrl+C. Para outra porta, use `app.py --porta 8502`. A aplicação é local e não inclui autenticação para publicação na internet.
 
 ## Uso
 
